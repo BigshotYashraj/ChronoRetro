@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chronicles of Time</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="app-container">
+
+```
+<!-- HEADER TITLE -->
+<header class="title-header">
+  <h1>Chronicles of Time</h1>
+  <p class="subtitle">Journey Through the Ages</p>
+</header>
+
+<!-- 3D GLOBE CANVAS -->
+<canvas id="globe-canvas"></canvas>
+
+<!-- TIMELINE PANEL -->
+<div class="timeline-panel">
+  <label>Choose a Year:</label>
+  <input type="range" id="year-slider" min="-3000" max="2025" value="1500" />
+  <span id="year-value">1500</span>
+</div>
+```
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <script src="main.js"></script>
+
+</body>
+</html>
