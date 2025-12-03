@@ -1,0 +1,57 @@
+body {
+margin: 0;
+overflow: hidden;
+background: #0d0a06;
+font-family: "Cinzel", serif;
+color: #f5d7a1;
+}
+
+#app-container {
+width: 100vw;
+height: 100vh;
+}
+
+.title-header {
+text-align: center;
+padding-top: 20px;
+color: #e8c590;
+text-shadow: 0 0 15px rgba(255, 230, 160, 0.4);
+}
+
+.title-header h1 {
+font-size: 3rem;
+margin: 0;
+}
+
+.subtitle {
+margin-top: -10px;
+font-size: 1.2rem;
+letter-spacing: 2px;
+}
+
+#globe-canvas {
+width: 100%;
+height: 100%;
+display: block;
+}
+
+/* TIMELINE PANEL */
+.timeline-panel {
+position: absolute;
+bottom: 30px;
+width: 100%;
+text-align: center;
+font-size: 1.2rem;
+}
+
+#year-slider {
+width: 60%;
+margin-top: 10px;
+}
+
+#year-value {
+display: block;
+margin-top: 8px;
+font-size: 1.4rem;
+color: #ffe3b2;
+}
