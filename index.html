@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -7,85 +6,89 @@
   <title>ChronoRetro — Cyberpunk Time Machine</title>
 
   <!-- Three.js -->
-
   <script src="https://unpkg.com/three@0.152.0/build/three.min.js"></script>
-
   <script src="https://unpkg.com/three@0.152.0/examples/js/controls/OrbitControls.js"></script>
-
   <script src="https://unpkg.com/three@0.152.0/examples/js/postprocessing/EffectComposer.js"></script>
-
   <script src="https://unpkg.com/three@0.152.0/examples/js/postprocessing/RenderPass.js"></script>
-
   <script src="https://unpkg.com/three@0.152.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
 
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div id="app">
 
-```
-<!-- Top bar -->
-<header class="topbar">
-  <div class="brand">
-    <div class="brand-icon">⟠</div>
-    <div>
-      <div class="app-title">ChronoRetro</div>
-      <div class="app-sub">Cyberpunk Time Travel Atlas</div>
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">⟠</div>
+        <div>
+          <div class="app-title">ChronoRetro</div>
+          <div class="app-sub">Cyberpunk Time Travel Atlas</div>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <div class="badge">Prototype • Cyber-blue</div>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="main">
+
+      <!-- 3D Globe Area -->
+      <div id="viewer">
+        <canvas id="globe-canvas"></canvas>
+        <div id="holo-grid"></div>
+      </div>
+
+      <!-- ⭐ NEW EVENT LIST + VIEWER (your main.js needs this) -->
+      <div id="event-list" class="event-list"></div>
+
+      <div id="event-viewer" class="event-viewer">
+        <p>Select a historical event.</p>
+      </div>
+
+      <!-- Right info panel (unchanged) -->
+      <aside id="infoPanel" class="panel hidden">
+        <button id="closeInfo" class="close">✕</button>
+        <div id="infoContent" class="info-content">
+          <h2 id="evTitle">Event Title</h2>
+          <div id="evMeta" class="meta">Date • Location</div>
+          <div id="evBody" class="body">Select an event marker on the globe to see the narrative here.</div>
+        </div>
+      </aside>
+
+    </main>
+
+    <!-- Bottom timeline control -->
+    <div class="timeline">
+      <div class="timeline-left">
+        <label class="label">Year</label>
+        <input id="yearSlider" type="range" min="-3000" max="2025" value="1500" />
+        <div class="year-display" id="yearDisplay">1500</div>
+      </div>
+
+      <div class="timeline-center">
+        <label class="label">Month</label>
+        <select id="monthSelect">
+          <option>January</option><option>February</option><option>March</option><option>April</option>
+          <option>May</option><option>June</option><option>July</option><option>August</option>
+          <option>September</option><option>October</option><option>November</option><option>December</option>
+        </select>
+      </div>
+
+      <div class="timeline-right">
+        <button id="timeTravelBtn" class="cta">TIME TRAVEL</button>
+      </div>
     </div>
-  </div>
 
-  <div class="top-actions">
-    <div class="badge">Prototype • Cyber-blue</div>
-  </div>
-</header>
-
-<!-- Main content -->
-<main class="main">
-  <!-- canvas / 3D globe background -->
-  <div id="viewer">
-    <canvas id="globe-canvas"></canvas>
-    <div id="holo-grid"></div>
-  </div>
-
-  <!-- Right info panel -->
-  <aside id="infoPanel" class="panel hidden">
-    <button id="closeInfo" class="close">✕</button>
-    <div id="infoContent" class="info-content">
-      <h2 id="evTitle">Event Title</h2>
-      <div id="evMeta" class="meta">Date • Location</div>
-      <div id="evBody" class="body">Select an event marker on the globe to see the narrative here.</div>
-    </div>
-  </aside>
-</main>
-
-<!-- Bottom timeline control -->
-<div class="timeline">
-  <div class="timeline-left">
-    <label class="label">Year</label>
-    <input id="yearSlider" type="range" min="-3000" max="2025" value="1500" />
-    <div class="year-display" id="yearDisplay">1500</div>
-  </div>
-
-  <div class="timeline-center">
-    <label class="label">Month</label>
-    <select id="monthSelect">
-      <option>January</option><option>February</option><option>March</option><option>April</option>
-      <option>May</option><option>June</option><option>July</option><option>August</option>
-      <option>September</option><option>October</option><option>November</option><option>December</option>
-    </select>
-  </div>
-
-  <div class="timeline-right">
-    <button id="timeTravelBtn" class="cta">TIME TRAVEL</button>
-  </div>
-</div>
-
-<footer class="footer">Built for final-year project • ChronoRetro</footer>
-```
+    <footer class="footer">Built for final-year project • ChronoRetro</footer>
 
   </div>
 
-  <script src="script.js"></script>
+  <!-- Use the correct JS file -->
+  <script src="main.js"></script>
 
 </body>
 </html>
