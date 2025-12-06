@@ -54,7 +54,7 @@ description: "Apple released the first iPhone, changing modern technology."
 const list = document.getElementById("event-list");
 const viewer = document.getElementById("event-viewer");
 
-events.forEach((e, i) => {
+events.forEach((e) => {
 const btn = document.createElement("button");
 btn.innerText = `${e.year} - ${e.title}`;
 btn.onclick = () => {
