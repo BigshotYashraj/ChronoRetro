@@ -1,65 +1,93 @@
-const events = [
-{
-year: "776 BC",
-title: "First Olympic Games",
-description: "The first recorded Olympic Games were held in ancient Greece."
-},
-{
-year: "44 BC",
-title: "Assassination of Julius Caesar",
-description: "Julius Caesar was assassinated on the Ides of March."
-},
-{
-year: "476 AD",
-title: "Fall of Western Roman Empire",
-description: "The Western Roman Empire collapsed, marking the end of ancient Rome."
-},
-{
-year: "1492",
-title: "Columbus Discovers America",
-description: "Christopher Columbus reached the Americas."
-},
-{
-year: "1776",
-title: "American Independence",
-description: "The United States declared independence from Britain."
-},
-{
-year: "1914",
-title: "Start of World War 1",
-description: "World War 1 began after the assassination of Archduke Franz Ferdinand."
-},
-{
-year: "1939",
-title: "Start of World War 2",
-description: "Germany invaded Poland, beginning World War 2."
-},
-{
-year: "1969",
-title: "Moon Landing",
-description: "Neil Armstrong became the first human to step on the Moon."
-},
-{
-year: "1991",
-title: "Internet Becomes Public",
-description: "The World Wide Web was made publicly available."
-},
-{
-year: "2007",
-title: "First iPhone Launch",
-description: "Apple released the first iPhone, changing modern technology."
-}
-];
+/* --------------------------
+BASIC TIME MACHINE ENGINE
+---------------------------*/
 
-const list = document.getElementById("event-list");
+// 1) Create the scene
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(
+75,
+window.innerWidth / window.innerHeight,
+0.1,
+1000
+);
+const renderer = new THREE.WebGLRenderer({
+canvas: document.getElementById("globe-canvas")
+});
+renderer.setSize(window.innerWidth, window.innerHeight);
+camera.position.z = 3;
+
+// 2) Create the Earth sphere
+const textureLoader = new THREE.TextureLoader();
+const earthTexture = textureLoader.load("earth.jpg"); // make sure file is in your repo
+
+const earthGeo = new THREE.SphereGeometry(1, 32, 32);
+const earthMat = new THREE.MeshBasicMaterial({ map: earthTexture });
+const earth = new THREE.Mesh(earthGeo, earthMat);
+scene.add(earth);
+
+// 3) Normal slow rotation
+let spinSpeed = 0.002;
+
+// 4) Time travel animation state
+let isTimeTraveling = false;
+let travelSpinTime = 0;
+
+// 5) Data: events by year
+const timelineEvents = {
+44: ["Assassination of Julius Caesar"],
+476: ["Fall of the Western Roman Empire"],
+1492: ["Columbus reaches the Americas"],
+1776: ["American Declaration of Independence"],
+1914: ["Start of World War 1"],
+1939: ["Start of World War 2"],
+1969: ["Moon Landing"],
+1991: ["Internet becomes public"],
+2007: ["First iPhone released"],
+};
+
+// 6) Render events in viewer
+function showEvents(year) {
 const viewer = document.getElementById("event-viewer");
 
-events.forEach((e) => {
-const btn = document.createElement("button");
-btn.innerText = `${e.year} - ${e.title}`;
-btn.onclick = () => {
-viewer.innerHTML = `       <h2>${e.year}</h2>       <h3>${e.title}</h3>       <p>${e.description}</p>
+if (timelineEvents[year]) {
+viewer.innerHTML = `      <h2>${year}</h2>       <ul>
+        ${timelineEvents[year].map(ev =>`<li>${ev}</li>`).join("")}       </ul>
     `;
+} else {
+viewer.innerHTML = `       <h2>${year}</h2>       <p>No major events found.</p>
+    `;
+}
+}
+
+// 7) Time travel button click
+document.getElementById("timeTravelBtn").onclick = () => {
+const year = parseInt(document.getElementById("yearSlider").value);
+
+// start spinning FAST
+spinSpeed = 0.3;
+isTimeTraveling = true;
+travelSpinTime = 0;
+
+// delay event reveal until spinning finishes
+setTimeout(() => showEvents(year), 1000);
 };
-list.appendChild(btn);
-});
+
+// 8) Main animation loop
+function animate() {
+requestAnimationFrame(animate);
+
+if (isTimeTraveling) {
+travelSpinTime += 0.016;
+if (travelSpinTime >= 1) {
+// stop time travel spin
+spinSpeed = 0.002;
+isTimeTraveling = false;
+}
+}
+
+earth.rotation.y += spinSpeed;
+
+renderer.render(scene, camera);
+}
+
+animate();
