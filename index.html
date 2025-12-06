@@ -1,35 +1,41 @@
 <!DOCTYPE html>
+
 <html>
 <head>
-  <title>Chrono Time Machine</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Historical Time Machine</title>
 
   <!-- Three.js -->
-  <script src="https://unpkg.com/three@0.152.0/build/three.min.js"></script>
-</head>
 
+  <script src="https://unpkg.com/three@0.152.0/build/three.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
   <h1>Historical Time Machine</h1>
 
-  <!-- The spinning Earth -->
-  <canvas id="globe-canvas"></canvas>
+  <!-- 3D Earth -->
 
-  <!-- YEAR SLIDER -->
-  <div class="controls">
-    <label>Choose Year:</label>
-    <input id="yearSlider" type="range" min="-3000" max="2025" value="1500">
-    <span id="yearDisplay">1500</span>
+<canvas id="globe-canvas"></canvas>
+
+  <!-- Year slider -->
+
+  <div class="slider-box">
+    <input id="yearSlider" type="range" min="44" max="2025" value="1969">
+    <p id="yearLabel">Selected Year: 1969</p>
   </div>
 
-  <!-- TIME TRAVEL BUTTON -->
-  <button id="timeTravelBtn">TIME TRAVEL</button>
+  <!-- Time travel button -->
 
-  <!-- EVENT VIEWER -->
+<button id="timeTravelBtn">TIME TRAVEL</button>
+
+  <!-- Event viewer -->
+
   <div id="event-viewer">
-    <p>Select a year and press Time Travel.</p>
+    <p>Select a year and click Time Travel.</p>
   </div>
 
   <script src="main.js"></script>
+
 </body>
 </html>
