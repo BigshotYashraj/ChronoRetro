@@ -19,7 +19,7 @@ camera.position.z = 3;
 
 // 2) Load Earth texture
 const textureLoader = new THREE.TextureLoader();
-const earthTexture = textureLoader.load("earth.jpg"); // make sure earth.jpg is in your repo
+const earthTexture = textureLoader.load("globe_texture.png");
 
 // 3) Create Earth sphere
 const earthGeo = new THREE.SphereGeometry(1, 32, 32);
